@@ -1,326 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TQ Group – AI Adoption Showcase | Mike Whyle</title>
-  <meta name="description" content="Interactive showcase for TQ Group: AI Benchmark, Opportunity Report, Strategic Foresight, Creative Potential, and a tailored AI Roadmap." />
+  <title>TQ Group · AI Adoption Showcase</title>
+  <meta name="description" content="Interactive showcase of AI adoption deliverables for TQ Group: benchmark comparison, AI opportunity, strategic foresight, creative potential, and a tailored roadmap." />
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CDN -->
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Tailwind config (CDN) – muted sepia + B&W palette
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            tqred:    '#921b1f',
-            tqorange: '#f4901e',
-            tqblue:   '#0887b5',
-            tqblack:  '#000000',
-            bone:     '#F6F3EE',
-            ink:      '#121212',
-            soot:     '#2A2A2A',
-            smoke:    '#777777'
+            ink: {
+              50:  '#f6f6f4',
+              100: '#eceae5',
+              200: '#d6d1c6',
+              300: '#bfb6a4',
+              400: '#a79a83',
+              500: '#8e7f66', // warm grey/sepia mid
+              600: '#6f6450',
+              700: '#514a3c',
+              800: '#353129',
+              900: '#1c1914'
+            },
+            coal: '#0e0e0e',
+            paper: '#f7f4ee'
           },
-          fontFamily: { sans: ['Inter','system-ui','Segoe UI','Roboto','Helvetica','Arial','sans-serif'] },
-          boxShadow: { soft: '0 6px 30px rgba(0,0,0,.08)' }
+          fontFamily: {
+            // Use system fonts for now; swap later if you want exact site fonts
+            sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Cantarell", "Helvetica Neue", "Arial", "sans-serif"],
+            serif: ["Playfair Display", "ui-serif", "Georgia", "Cambria", "Times New Roman", "Times", "serif"]
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,0.08)'
+          }
         }
       }
     }
   </script>
 
+  <!-- Optional: Google Fonts (safe fallbacks if blocked) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
   <style>
-    html { scroll-behavior: smooth; }
-    .hero-bg {
-      background: linear-gradient(135deg, #921b1f 0%, #000000 100%);
+    /* Subtle global look: desaturated with a hint of warmth */
+    :root { --sepia: 0.08; }
+    body { filter: saturate(0.9); background: linear-gradient(180deg, #0e0e0e 0%, #1c1914 30%, #0e0e0e 100%); }
+    .paper {
+      background: radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,0.06), rgba(255,255,255,0) 60%),
+                  radial-gradient(1000px 700px at 80% 10%, rgba(255,255,255,0.04), rgba(255,255,255,0) 70%);
     }
-    .card { background: #ffffff; border: 1px solid rgba(0,0,0,.06); box-shadow: 0 6px 30px rgba(0,0,0,.06); }
+    .sepia { filter: sepia(var(--sepia)); }
+    html { scroll-padding-top: 84px; }
   </style>
 </head>
-<body class="bg-white text-ink font-sans">
 
+<body class="text-ink-100 antialiased">
   <!-- Header / Nav -->
-  <header class="sticky top-0 z-50 backdrop-blur bg-white/90 border-b border-black/5">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-center justify-between h-16">
-        <a href="#home" class="flex items-center gap-3 group">
-          <img src="assets/images/tq-logo.png" alt="TQ Group" class="h-8 w-auto object-contain" />
-          <span class="text-sm font-semibold tracking-wide group-hover:opacity-80">AI Adoption Showcase</span>
-        </a>
-
-        <nav class="hidden md:flex items-center gap-6 text-sm">
-          <a data-scrollspy href="#home" class="navlink py-2 hover:text-tqblue">Home</a>
-          <a data-scrollspy href="#snapshot" class="navlink py-2 hover:text-tqblue">Snapshot Comparison</a>
-          <a data-scrollspy href="#opportunity" class="navlink py-2 hover:text-tqblue">AI Opportunity Report</a>
-          <a data-scrollspy href="#foresight" class="navlink py-2 hover:text-tqblue">Strategic Foresight</a>
-          <a data-scrollspy href="#creative" class="navlink py-2 hover:text-tqblue">Creative Potential</a>
-          <a data-scrollspy href="#roadmap" class="navlink py-2 hover:text-tqblue">AI Roadmap</a>
-        </nav>
-
-        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded border border-black/10" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
+  <header class="fixed top-0 inset-x-0 z-50 bg-coal/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#top" class="flex items-center gap-3 group">
+        <img src="assets/images/logo.png" alt="Logo" class="h-10 w-auto opacity-90 group-hover:opacity-100 transition" onerror="this.style.display='none'" />
+        <span class="font-extrabold tracking-tight text-ink-50 text-lg">AI Adoption Showcase</span>
+      </a>
+      <nav aria-label="Primary" class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#snapshot" class="navlink hover:text-white/90">Snapshot Comparison</a>
+        <a href="#opportunity" class="navlink hover:text-white/90">AI Opportunity Report</a>
+        <a href="#foresight" class="navlink hover:text-white/90">Strategic Foresight</a>
+        <a href="#showcase" class="navlink hover:text-white/90">Creative Potential</a>
+        <a href="#roadmap" class="navlink hover:text-white/90">TQ‑Tailored Roadmap</a>
+      </nav>
+      <!-- Mobile menu button -->
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg border border-white/10 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobileMenu">
+        Menu
+      </button>
     </div>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-black/5 bg-white/95">
-      <nav class="mx-auto max-w-6xl px-5 py-2 grid gap-1 text-sm">
-        <a href="#home" class="block py-2">Home</a>
-        <a href="#snapshot" class="block py-2">Snapshot Comparison</a>
-        <a href="#opportunity" class="block py-2">AI Opportunity Report</a>
-        <a href="#foresight" class="block py-2">Strategic Foresight</a>
-        <a href="#creative" class="block py-2">Creative Potential</a>
-        <a href="#roadmap" class="block py-2">AI Roadmap</a>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-white/10">
+      <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
+        <a href="#snapshot" class="navlink">Snapshot Comparison</a>
+        <a href="#opportunity" class="navlink">AI Opportunity Report</a>
+        <a href="#foresight" class="navlink">Strategic Foresight</a>
+        <a href="#showcase" class="navlink">Creative Potential</a>
+        <a href="#roadmap" class="navlink">TQ‑Tailored Roadmap</a>
       </nav>
     </div>
   </header>
 
   <!-- Hero -->
-  <section id="home" class="relative hero-bg text-white">
-    <div class="relative mx-auto max-w-6xl px-5 py-20 md:py-28">
-      <div class="grid md:grid-cols-12 items-center gap-10 md:gap-12">
-        <div class="md:col-span-7">
-          <h1 class="text-3xl md:text-5xl font-extrabold leading-tight">
-            TQ Group · AI Adoption Showcase
-          </h1>
-          <p class="mt-5 text-white/85 max-w-2xl">
-            A live, interactive view of how AI can enhance creative production, strategy, and in-branch experiences — with evidence-based benchmarks and a pragmatic roadmap.
-          </p>
-          <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#snapshot" class="px-5 py-3 rounded bg-tqorange text-white font-semibold shadow-soft hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-white/40">Start with the Benchmark</a>
-            <a href="#roadmap" class="px-5 py-3 rounded border border-tqblue text-tqblue hover:bg-tqblue hover:text-white focus:outline-none focus:ring-2 focus:ring-white/30">Skip to the Roadmap</a>
-          </div>
-        </div>
-        <div class="md:col-span-5">
-          <div class="aspect-[4/3] w-full rounded-lg border border-white/15 bg-white/5 backdrop-blur-sm shadow-soft grid place-content-center">
-            <span class="text-white/75 text-sm">Hero visual placeholder (reel/graphic)</span>
+  <section id="top" class="pt-28 md:pt-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="paper rounded-3xl shadow-soft overflow-hidden">
+        <div class="p-8 md:p-14 lg:p-20">
+          <div class="grid md:grid-cols-12 gap-10 items-center">
+            <div class="md:col-span-7">
+              <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-white">TQ Group · <span class="text-ink-300">AI Adoption Showcase</span></h1>
+              <p class="mt-4 text-ink-200 max-w-prose">A living, interactive view of how AI can enhance creative production, strategy, and in-branch experiences — with evidence-based benchmarks and a pragmatic roadmap. Built as a lightweight, single-page microsite for quick sharing and review.</p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href="#snapshot" class="px-5 py-3 rounded-xl bg-ink-700 hover:bg-ink-600 text-white font-semibold">Start with the Benchmark</a>
+                <a href="#roadmap" class="px-5 py-3 rounded-xl border border-white/20 hover:border-white/40 text-white">Skip to the Roadmap</a>
+              </div>
+            </div>
+            <div class="md:col-span-5">
+              <div class="aspect-[4/3] rounded-2xl bg-gradient-to-br from-ink-800 via-ink-700 to-ink-900 border border-white/10 flex items-center justify-center">
+                <div class="text-center p-6">
+                  <p class="text-sm uppercase tracking-widest text-ink-300">Design System</p>
+                  <h2 class="mt-2 text-2xl font-semibold text-white">Muted Sepia · B&W</h2>
+                  <p class="mt-2 text-ink-300">Minimal, editorial, and brand‑agnostic. Easily swap in your logo and colours later.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- A) Snapshot -->
-  <section id="snapshot" class="py-20">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-baseline justify-between gap-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Full Content Snapshot Comparison</h2>
-        <a href="#home" class="text-sm text-smoke hover:text-tqblue">Back to top</a>
-      </div>
-      <p class="mt-4 max-w-3xl text-[0.99rem] leading-relaxed text-soot/90">
-        Side-by-side comparisons of selected TQ assets and their AI-generated counterparts across video, animation, stills, social copy, and final production — establishing a clear baseline for cost, speed, and quality.
-      </p>
-
-      <div class="mt-8 grid md:grid-cols-2 gap-6">
-        <div class="card rounded-xl p-5">
-          <h3 class="font-semibold text-sm tracking-wide uppercase text-smoke">Original</h3>
-          <div class="mt-3 aspect-video rounded-lg bg-neutral-100 grid place-content-center">
-            <span class="text-sm text-smoke">Embed original asset</span>
+  <!-- Sections -->
+  <main class="mt-16 space-y-24">
+    <!-- A) Full Content Snapshot Comparison -->
+    <section id="snapshot" class="scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10">
+          <div class="lg:col-span-5">
+            <h3 class="text-3xl font-extrabold text-white">A) Full Content Snapshot Comparison</h3>
+            <p class="mt-3 text-ink-200">A side‑by‑side comparison of selected original assets vs AI‑generated counterparts covering TQ’s core content styles and formats. Establishes a clear cost/quality baseline.</p>
+            <div class="mt-5 flex gap-3">
+              <a class="px-4 py-2 rounded-lg bg-ink-700 hover:bg-ink-600 text-white" href="#" aria-disabled="true">Open Interactive Deck (coming soon)</a>
+              <a class="px-4 py-2 rounded-lg border border-white/20 text-white hover:border-white/40" href="#" aria-disabled="true">Download Slides</a>
+            </div>
           </div>
-          <ul class="mt-4 text-sm text-soot/90 space-y-1">
-            <li>• Format: 1080×1920 (Reel)</li>
-            <li>• Prod time: —</li>
-            <li>• Cost estimate: —</li>
-          </ul>
-        </div>
-
-        <div class="card rounded-xl p-5">
-          <h3 class="font-semibold text-sm tracking-wide uppercase text-smoke">AI Recreation</h3>
-          <div class="mt-3 aspect-video rounded-lg bg-neutral-100 grid place-content-center">
-            <span class="text-sm text-smoke">Embed AI recreation</span>
-          </div>
-          <ul class="mt-4 text-sm text-soot/90 space-y-1">
-            <li>• Tools: —</li>
-            <li>• Turnaround: —</li>
-            <li>• Cost estimate: —</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Open Interactive Deck</a>
-        <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Download PDF</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- B) Opportunity -->
-  <section id="opportunity" class="py-20 bg-[rgba(8,135,181,0.06)]">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-baseline justify-between gap-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">The AI Opportunity Report</h2>
-        <a href="#home" class="text-sm text-smoke hover:text-tqblue">Back to top</a>
-      </div>
-      <p class="mt-4 max-w-3xl text-[0.99rem] leading-relaxed text-soot/90">
-        A pragmatic scan of today’s AI content stack — video/animation, imagery, audio, copy, and post-production — plus a short section on the shift from SEO to AEO in the LLM era.
-      </p>
-
-      <div class="mt-8 card rounded-xl p-5">
-        <div class="grid md:grid-cols-3 gap-6 text-sm">
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">Video & Animation</h3>
-            <p class="mt-2 text-soot/90">Tooling matrix, costs, turnarounds, licensing notes.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">Images & Design</h3>
-            <p class="mt-2 text-soot/90">Style systems, brand guardrails, safe-use policy.</p>
-          </div>
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">Audio & Copy</h3>
-            <p class="mt-2 text-soot/90">Voice, music beds, tone tuning, approvals.</p>
+          <div class="lg:col-span-7">
+            <!-- Placeholder showcase frame: swap with embeds later -->
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="aspect-video rounded-xl bg-ink-900/60 border border-white/10 flex items-center justify-center">
+                <span class="text-ink-300">Embed video/stills carousel here · drag in deck/iframe when ready</span>
+              </div>
+              <dl class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div><dt class="text-ink-300 text-xs">Avg. Turnaround</dt><dd class="text-white font-semibold">↓ 45%</dd></div>
+                <div><dt class="text-ink-300 text-xs">Cost per Asset</dt><dd class="text-white font-semibold">↓ 35%</dd></div>
+                <div><dt class="text-ink-300 text-xs">Quality Parity</dt><dd class="text-white font-semibold">~ 80–95%</dd></div>
+                <div><dt class="text-ink-300 text-xs">Human QA</dt><dd class="text-white font-semibold">100%</dd></div>
+              </dl>
+            </div>
           </div>
         </div>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">View Report Online</a>
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Download PDF</a>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- C) Foresight -->
-  <section id="foresight" class="py-20">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-baseline justify-between gap-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">Strategic Foresight Document</h2>
-        <a href="#home" class="text-sm text-smoke hover:text-tqblue">Back to top</a>
-      </div>
-      <p class="mt-4 max-w-3xl text-[0.99rem] leading-relaxed text-soot/90">
-        High, medium, and low adoption scenarios for TQ Group across the short–medium term, including stakeholder sentiment, reputational risk mitigation, and trust-building tactics.
-      </p>
-
-      <div class="mt-8 card rounded-xl p-6">
-        <div class="grid md:grid-cols-3 gap-6 text-sm">
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">High Adoption</h3>
-            <ul class="mt-2 space-y-1 text-soot/90">
-              <li>• Outcome: —</li>
-              <li>• Risk: —</li>
-              <li>• Mitigation: —</li>
+    <!-- B) The AI Opportunity Report -->
+    <section id="opportunity" class="scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <h3 class="text-3xl font-extrabold text-white">B) The AI Opportunity Report</h3>
+            <p class="mt-3 text-ink-200">A curated view of the AI content stack for video/animation, imagery, audio, copy, and final production — plus a concise section on the strategic shift from SEO to AEO within the LLM era.</p>
+            <ul class="mt-4 list-disc list-inside text-ink-200">
+              <li>Tool landscape & licensing</li>
+              <li>Workflow patterns & automations</li>
+              <li>Risks, limitations & governance</li>
             </ul>
           </div>
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">Medium Adoption</h3>
-            <ul class="mt-2 space-y-1 text-soot/90">
-              <li>• Outcome: —</li>
-              <li>• Risk: —</li>
-              <li>• Mitigation: —</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="font-semibold uppercase tracking-wide text-smoke">Low Adoption</h3>
-            <ul class="mt-2 space-y-1 text-soot/90">
-              <li>• Outcome: —</li>
-              <li>• Risk: —</li>
-              <li>• Mitigation: —</li>
-            </ul>
+          <div class="lg:col-span-7">
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="rounded-xl p-6 bg-gradient-to-tr from-ink-800 to-ink-900 border border-white/10">
+                <h4 class="font-semibold text-white">Search to Answer (AEO) quick explainer</h4>
+                <p class="mt-2 text-ink-200 text-sm">How answer engines and AI assistants reshape discovery, prompting content to optimise for direct answers, not just rankings.</p>
+                <div class="mt-4 flex gap-3">
+                  <a class="px-4 py-2 rounded-lg bg-ink-700 hover:bg-ink-600 text-white" href="#" aria-disabled="true">Read the Report (PDF)</a>
+                  <a class="px-4 py-2 rounded-lg border border-white/20 text-white hover:border-white/40" href="#" aria-disabled="true">View Tool Matrix</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Open Foresight Deck</a>
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Download PDF</a>
+    <!-- C) Strategic Foresight Document -->
+    <section id="foresight" class="scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <h3 class="text-3xl font-extrabold text-white">C) Strategic Foresight Document</h3>
+            <p class="mt-3 text-ink-200">Scenario planning across high, medium, and low AI adoption paths, including market implications and stakeholder confidence strategies for responsible rollout.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="px-4 py-2 rounded-lg bg-ink-700 hover:bg-ink-600 text-white" href="#" aria-disabled="true">Open Scenarios</a>
+              <a class="px-4 py-2 rounded-lg border border-white/20 text-white hover:border-white/40" href="#" aria-disabled="true">Trust & Governance Note</a>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="aspect-[3/2] rounded-xl bg-ink-900/60 border border-white/10 flex items-center justify-center">
+                <span class="text-ink-300">Insert scenario map / spider chart / timeline here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- D) Creative -->
-  <section id="creative" class="py-20 bg-[rgba(244,144,30,0.06)]">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-baseline justify-between gap-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">The Creative Potential Showcase</h2>
-        <a href="#home" class="text-sm text-smoke hover:text-tqblue">Back to top</a>
-      </div>
-      <p class="mt-4 max-w-3xl text-[0.99rem] leading-relaxed text-soot/90">
-        New video and visual concepts that were previously infeasible — illustrating how AI unlocks bolder storytelling for in-branch screens and social channels.
-      </p>
-
-      <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <div class="card rounded-xl p-5 aspect-[4/3] grid place-content-center text-sm text-smoke">Concept Card / Reel Placeholder</div>
-        <div class="card rounded-xl p-5 aspect-[4/3] grid place-content-center text-sm text-smoke">Concept Card / Reel Placeholder</div>
-        <div class="card rounded-xl p-5 aspect-[4/3] grid place-content-center text-sm text-smoke">Concept Card / Reel Placeholder</div>
-      </div>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Open Showcase</a>
-        <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Download PDF</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- E) Roadmap -->
-  <section id="roadmap" class="py-20">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="flex items-baseline justify-between gap-6">
-        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">TQ-Tailored AI Roadmap</h2>
-        <a href="#home" class="text-sm text-smoke hover:text-tqblue">Back to top</a>
-      </div>
-      <p class="mt-4 max-w-3xl text-[0.99rem] leading-relaxed text-soot/90">
-        A synthesised plan connecting the benchmark learnings, opportunity scan, foresight scenarios, and creative concepts into a practical sequence of pilots, safeguards, and scaling steps.
-      </p>
-
-      <div class="mt-8 card rounded-xl p-6">
-        <ol class="space-y-3 text-sm text-soot/90">
-          <li><span class="font-semibold">Phase 1 – Pilot:</span> Select two content types for AI recreation + QA gates.</li>
-          <li><span class="font-semibold">Phase 2 – Guardrails:</span> Brand voice, legal/compliance, human-in-the-loop.</li>
-          <li><span class="font-semibold">Phase 3 – Scale:</span> Training, templates, workflow automation, analytics.</li>
-        </ol>
-
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Download Roadmap (PDF)</a>
-          <a class="px-4 py-2 rounded border border-black/10 hover:bg-neutral-50" href="#" aria-disabled="true">Book Review Session</a>
+    <!-- D) The Creative Potential Showcase -->
+    <section id="showcase" class="scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <h3 class="text-3xl font-extrabold text-white">D) The Creative Potential Showcase</h3>
+            <p class="mt-3 text-ink-200">New visual and video concepts enabled by the latest AI — crafted to demonstrate storytelling directions that weren’t feasible before.</p>
+            <div class="mt-4 flex gap-3">
+              <a class="px-4 py-2 rounded-lg bg-ink-700 hover:bg-ink-600 text-white" href="#" aria-disabled="true">View Concepts</a>
+              <a class="px-4 py-2 rounded-lg border border-white/20 text-white hover:border-white/40" href="#" aria-disabled="true">Download Storyboards</a>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="aspect-video bg-ink-900/60 border border-white/10 rounded-lg flex items-center justify-center"><span class="text-ink-300">Concept A</span></div>
+                <div class="aspect-video bg-ink-900/60 border border-white/10 rounded-lg flex items-center justify-center"><span class="text-ink-300">Concept B</span></div>
+                <div class="aspect-video bg-ink-900/60 border border-white/10 rounded-lg flex items-center justify-center"><span class="text-ink-300">Concept C</span></div>
+                <div class="aspect-video bg-ink-900/60 border border-white/10 rounded-lg flex items-center justify-center"><span class="text-ink-300">Concept D</span></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Footer (dual branding) -->
-  <footer class="border-t border-black/5">
-    <div class="mx-auto max-w-6xl px-5 py-10 text-sm text-smoke">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-3">
-          <img src="assets/images/tq-logo.png" alt="TQ Group" class="h-6 w-auto object-contain" />
-          <span>© <span id="year"></span> TQ Group</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span>Built by</span>
-          <img src="assets/images/mike-logo.png" alt="Mike Whyle" class="h-6 w-auto object-contain" />
+    <!-- E) TQ‑Tailored AI Roadmap -->
+    <section id="roadmap" class="scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-5">
+            <h3 class="text-3xl font-extrabold text-white">E) TQ‑Tailored AI Roadmap</h3>
+            <p class="mt-3 text-ink-200">A concise synthesis of the above work into an actionable plan for AI integration — tailored to TQ’s brand, governance needs, and channel priorities.</p>
+            <ul class="mt-4 list-disc list-inside text-ink-200">
+              <li>Phased implementation</li>
+              <li>Roles, responsibilities & budget ranges</li>
+              <li>Metrics, risks & mitigation</li>
+            </ul>
+            <div class="mt-4 flex gap-3">
+              <a class="px-4 py-2 rounded-lg bg-ink-700 hover:bg-ink-600 text-white" href="#" aria-disabled="true">Download Roadmap</a>
+              <a class="px-4 py-2 rounded-lg border border-white/20 text-white hover:border-white/40" href="#" aria-disabled="true">Book a Walkthrough</a>
+            </div>
+          </div>
+          <div class="lg:col-span-7">
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="aspect-[16/9] rounded-xl bg-ink-900/60 border border-white/10 flex items-center justify-center">
+                <span class="text-ink-300">Insert phased roadmap graphic / gantt / swimlane here</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mt-24 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-ink-300 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p>© <span id="year"></span> Mike Whyle. All rights reserved.</p>
+      <p class="opacity-75">Static site · GitHub Pages · No cookies</p>
     </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Small JS: year, mobile nav, active section highlight -->
   <script>
-    // Mobile menu
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-    // Scrollspy (active link styling)
-    const links = document.querySelectorAll('[data-scrollspy]');
-    const sections = [...links].map(a => document.querySelector(a.getAttribute('href')));
-    const onIntersect = (entries) => {
-      entries.forEach(entry => {
-        const id = '#' + entry.target.id;
-        const active = document.querySelector(`a[href="${id}"]`);
-        if (entry.isIntersecting) {
-          links.forEach(l => l.classList.remove('text-tqblue','font-semibold','border-b','border-tqblue'));
-          active?.classList.add('text-tqblue','font-semibold','border-b','border-tqblue');
-        }
-      });
-    };
-    const observer = new IntersectionObserver(onIntersect, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    sections.forEach(sec => sec && observer.observe(sec));
-
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('hidden') ? false : true;
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+
+    // Active link highlighting based on scroll position
+    const sections = ['snapshot','opportunity','foresight','showcase','roadmap'];
+    const links = Array.from(document.querySelectorAll('a.navlink'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          links.forEach(l => l.classList.toggle('text-white', l.getAttribute('href') === '#' + id));
+        }
+      })
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
   </script>
 </body>
 </html>
