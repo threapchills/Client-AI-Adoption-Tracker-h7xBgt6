@@ -9,6 +9,7 @@
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
+    // Tailwind config – keep your neutrals, add TQ brand colours
     tailwind.config = {
       theme: {
         extend: {
@@ -19,19 +20,27 @@
             },
             coal: '#0e0e0e',
             paper: '#f7f4ee',
-            tqred:'#921b1f', tqorange:'#f4901e', tqblue:'#0887b5', tqblack:'#000000'
+            // TQ brand
+            tqred:    '#921b1f',
+            tqorange: '#f4901e',
+            tqblue:   '#0887b5',
+            tqblack:  '#000000'
           },
           fontFamily: {
-            sans:["Inter","ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Noto Sans","Ubuntu","Cantarell","Helvetica Neue","Arial","sans-serif"],
+            sans: ["Inter","ui-sans-serif","system-ui","-apple-system","Segoe UI","Roboto","Noto Sans","Ubuntu","Cantarell","Helvetica Neue","Arial","sans-serif"],
             serif:["Playfair Display","ui-serif","Georgia","Cambria","Times New Roman","Times","serif"]
           },
-          boxShadow:{ soft:'0 10px 30px rgba(0,0,0,0.08)' }
+          boxShadow: { soft:'0 10px 30px rgba(0,0,0,0.08)' }
         }
       }
     }
   </script>
+
+  <!-- Optional: Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+
   <style>
+    /* Global: dark editorial backdrop */
     :root { --sepia: 0.08; }
     body { filter: saturate(0.9); background: linear-gradient(180deg, #0e0e0e 0%, #1c1914 30%, #0e0e0e 100%); }
     .paper {
@@ -42,7 +51,6 @@
     .sepia { filter: sepia(var(--sepia)); }
     html { scroll-padding-top: 84px; }
     .hero-brand { background: linear-gradient(135deg, #921b1f 0%, #000000 100%); }
-    /* helper for Drive iframes to keep rounded corners without overflow issues */
     .iframe-wrap { position: relative; overflow: hidden; border-radius: 0.75rem; }
     .iframe-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   </style>
@@ -57,21 +65,21 @@
         <span class="font-extrabold tracking-tight text-ink-50 text-lg">AI Adoption Showcase</span>
       </a>
       <nav aria-label="Primary" class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#snapshot" class="navlink hover:text-tqblue">Snapshot Comparison</a>
+        <a href="#snapshot"   class="navlink hover:text-tqblue">Snapshot Comparison</a>
         <a href="#opportunity" class="navlink hover:text-tqblue">AI Opportunity Report</a>
-        <a href="#foresight" class="navlink hover:text-tqblue">Strategic Foresight</a>
-        <a href="#showcase" class="navlink hover:text-tqblue">Creative Potential</a>
-        <a href="#roadmap" class="navlink hover:text-tqblue">TQ-Tailored Roadmap</a>
+        <a href="#foresight"   class="navlink hover:text-tqblue">Strategic Foresight</a>
+        <a href="#showcase"    class="navlink hover:text-tqblue">Creative Potential</a>
+        <a href="#roadmap"     class="navlink hover:text-tqblue">TQ-Tailored Roadmap</a>
       </nav>
       <button id="menuBtn" class="md:hidden inline-flex items-center justify-center rounded-lg border border-white/10 px-3 py-2 text-sm" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
     </div>
     <div id="mobileMenu" class="md:hidden hidden border-t border-white/10">
       <nav class="px-4 py-3 flex flex-col gap-3 text-sm">
-        <a href="#snapshot" class="navlink">Snapshot Comparison</a>
+        <a href="#snapshot"   class="navlink">Snapshot Comparison</a>
         <a href="#opportunity" class="navlink">AI Opportunity Report</a>
-        <a href="#foresight" class="navlink">Strategic Foresight</a>
-        <a href="#showcase" class="navlink">Creative Potential</a>
-        <a href="#roadmap" class="navlink">TQ-Tailored Roadmap</a>
+        <a href="#foresight"   class="navlink">Strategic Foresight</a>
+        <a href="#showcase"    class="navlink">Creative Potential</a>
+        <a href="#roadmap"     class="navlink">TQ-Tailored Roadmap</a>
       </nav>
     </div>
   </header>
@@ -85,23 +93,21 @@
             <div class="grid md:grid-cols-12 gap-10 items-center">
               <div class="md:col-span-7">
                 <h1 class="text-4xl md:text-5xl font-extrabold leading-tight text-white">TQ Group · <span class="text-white/90">AI Adoption Showcase</span></h1>
-                <p class="mt-4 text-white/85 max-w-prose">
-                  A living, interactive view of how AI can enhance creative production, strategy, and in-branch experiences — with evidence-based benchmarks and a pragmatic roadmap.
-                </p>
+                <p class="mt-4 text-white/85 max-w-prose">A living, interactive view of how AI can enhance creative production, strategy, and in-branch experiences — with evidence-based benchmarks and a pragmatic roadmap. Built as a lightweight, single-page microsite for quick sharing and review.</p>
                 <div class="mt-6 flex flex-wrap gap-3">
                   <a href="#snapshot" class="px-5 py-3 rounded-xl bg-tqorange hover:opacity-95 text-black font-semibold">Content Comparisons</a>
                   <a href="#roadmap" class="px-5 py-3 rounded-xl border border-tqblue text-tqblue hover:bg-tqblue hover:text-white">Strategy & Reports</a>
                 </div>
               </div>
               <div class="md:col-span-5">
-                <!-- Replaced design card with TQ logo block -->
-                <div class="aspect-[4/3] rounded-2xl bg-black/20 border border-white/15 flex items-center justify-center">
-                  <img src="assets/images/tq-logo.png" alt="TQ Group" class="h-20 w-auto opacity-95" />
+                <!-- Full-size TQ logo card -->
+                <div class="aspect-[4/3] rounded-2xl bg-black/20 border border-white/15 flex items-center justify-center overflow-hidden">
+                  <img src="assets/images/tq-logo.png" alt="TQ Group" class="w-full h-full object-contain p-6" />
                 </div>
               </div>
             </div>
           </div>
-        </div><!-- /hero-brand -->
+        </div>
       </div>
     </div>
   </section>
@@ -111,107 +117,104 @@
     <!-- A) Full Content Snapshot Comparison -->
     <section id="snapshot" class="scroll-mt-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-12 gap-10">
-          <div class="lg:col-span-5">
-            <h3 class="text-3xl font-extrabold text-white">A) Full Content Snapshot Comparison</h3>
-            <p class="mt-3 text-ink-200">Side-by-side comparisons of original assets and their AI-recrafted counterparts across TQ’s core content types. Establishes a clear cost/speed/quality baseline.</p>
-          </div>
-        </div>
+        <h3 class="text-3xl font-extrabold text-white mb-6">A) Full Content Snapshot Comparison</h3>
 
-        <!-- Pair 1 -->
-        <div class="mt-6 rounded-2xl border border-white/10 bg-coal/40 p-4">
-          <h4 class="text-white font-semibold mb-3">1) Penflex Rank TV</h4>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/13gEOh0zdMsO-3yNhVnA5TcUwIZmAHWOm/preview" allow="autoplay"></iframe>
+        <!-- Pair template -->
+        <div class="space-y-6">
+          <!-- Pair 1 -->
+          <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+            <h4 class="text-white font-semibold mb-3">1) Penflex Rank TV</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/13gEOh0zdMsO-3yNhVnA5TcUwIZmAHWOm/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/13gEOh0zdMsO-3yNhVnA5TcUwIZmAHWOm/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open original</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/13gEOh0zdMsO-3yNhVnA5TcUwIZmAHWOm/view?usp=sharing">Open original</a>
-            </div>
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1RJXhc265swLnPWQCQA5RzMsqI8aa-sLZ/preview" allow="autoplay"></iframe>
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1RJXhc265swLnPWQCQA5RzMsqI8aa-sLZ/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1RJXhc265swLnPWQCQA5RzMsqI8aa-sLZ/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open AI recraft</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1RJXhc265swLnPWQCQA5RzMsqI8aa-sLZ/view?usp=sharing">Open AI recraft</a>
             </div>
           </div>
-        </div>
 
-        <!-- Pair 2 -->
-        <div class="mt-6 rounded-2xl border border-white/10 bg-coal/40 p-4">
-          <h4 class="text-white font-semibold mb-3">2) Standard Bank · Credit Score</h4>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1OGE1VVJk8Ufi2yIihLJkzLj54fE3Z7VU/preview" allow="autoplay"></iframe>
+          <!-- Pair 2 -->
+          <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+            <h4 class="text-white font-semibold mb-3">2) Standard Bank · Credit Score</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1OGE1VVJk8Ufi2yIihLJkzLj54fE3Z7VU/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1OGE1VVJk8Ufi2yIihLJkzLj54fE3Z7VU/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open original</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1OGE1VVJk8Ufi2yIihLJkzLj54fE3Z7VU/view?usp=sharing">Open original</a>
-            </div>
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1ynqfMQk0NILjgM74f8cBIKU9NgXexn6O/preview" allow="autoplay"></iframe>
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1ynqfMQk0NILjgM74f8cBIKU9NgXexn6O/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1ynqfMQk0NILjgM74f8cBIKU9NgXexn6O/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open AI recraft</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1ynqfMQk0NILjgM74f8cBIKU9NgXexn6O/view?usp=sharing">Open AI recraft</a>
             </div>
           </div>
-        </div>
 
-        <!-- Pair 3 -->
-        <div class="mt-6 rounded-2xl border border-white/10 bg-coal/40 p-4">
-          <h4 class="text-white font-semibold mb-3">3) Standard Bank · Prestige</h4>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1xEJXLEtNiqgiGqp2m4DCJhfSHcrXvXEV/preview" allow="autoplay"></iframe>
+          <!-- Pair 3 -->
+          <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+            <h4 class="text-white font-semibold mb-3">3) Standard Bank · Prestige</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1xEJXLEtNiqgiGqp2m4DCJhfSHcrXvXEV/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1xEJXLEtNiqgiGqp2m4DCJhfSHcrXvXEV/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open original</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1xEJXLEtNiqgiGqp2m4DCJhfSHcrXvXEV/view?usp=sharing">Open original</a>
-            </div>
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1mgza5BlEfMDh5TXgFYeUf6konEbOPiNV/preview" allow="autoplay"></iframe>
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1mgza5BlEfMDh5TXgFYeUf6konEbOPiNV/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1mgza5BlEfMDh5TXgFYeUf6konEbOPiNV/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open AI recraft</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1mgza5BlEfMDh5TXgFYeUf6konEbOPiNV/view?usp=sharing">Open AI recraft</a>
             </div>
           </div>
-        </div>
 
-        <!-- Pair 4 -->
-        <div class="mt-6 rounded-2xl border border-white/10 bg-coal/40 p-4">
-          <h4 class="text-white font-semibold mb-3">4) African Bank · Tech Deals</h4>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1GBJbLPn5agFxnu3Wx8t4rTs0Px8NitXB/preview" allow="autoplay"></iframe>
+          <!-- Pair 4 -->
+          <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+            <h4 class="text-white font-semibold mb-3">4) African Bank · Tech Deals</h4>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1GBJbLPn5agFxnu3Wx8t4rTs0Px8NitXB/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1GBJbLPn5agFxnu3Wx8t4rTs0Px8NitXB/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open original</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1GBJbLPn5agFxnu3Wx8t4rTs0Px8NitXB/view?usp=sharing">Open original</a>
-            </div>
-            <div>
-              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
-                <iframe src="https://drive.google.com/file/d/1Gk_okuLyTBu7VdjERMwc8bzgbuyTDRBt/preview" allow="autoplay"></iframe>
+              <div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10">
+                  <iframe src="https://drive.google.com/file/d/1Gk_okuLyTBu7VdjERMwc8bzgbuyTDRBt/preview"></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1Gk_okuLyTBu7VdjERMwc8bzgbuyTDRBt/view?usp=sharing" target="_blank" class="text-tqblue text-sm mt-2 inline-block hover:underline">Open AI recraft</a>
               </div>
-              <a class="mt-2 inline-block text-sm text-tqblue hover:underline" target="_blank" href="https://drive.google.com/file/d/1Gk_okuLyTBu7VdjERMwc8bzgbuyTDRBt/view?usp=sharing">Open AI recraft</a>
             </div>
           </div>
-        </div>
 
-        <!-- Placeholders for 6 more pairs -->
-        <div class="mt-6 grid md:grid-cols-2 gap-6">
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #5</div>
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #6</div>
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #7</div>
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #8</div>
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #9</div>
-          <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #10</div>
+          <!-- Placeholders -->
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #5</div>
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #6</div>
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #7</div>
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #8</div>
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #9</div>
+            <div class="rounded-2xl border border-white/10 bg-coal/30 p-6 text-ink-300">Placeholder #10</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- The rest of your sections (Opportunity, Foresight, Showcase, Roadmap) remain unchanged -->
-    <!-- ... keep your existing code for these sections ... -->
-
+    <!-- Keep your other sections unchanged -->
+    <!-- ... -->
   </main>
 
-  <!-- Footer (dual-branding) -->
+  <!-- Footer -->
   <footer class="mt-24 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-ink-300 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -225,36 +228,14 @@
     </div>
   </footer>
 
-  <!-- Small JS: year, mobile nav, active section highlight -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
     const menuBtn = document.getElementById('menuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
-    if (menuBtn) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('hidden') ? false : true;
-        menuBtn.setAttribute('aria-expanded', String(isOpen));
-      });
-    }
-
-    const sections = ['snapshot','opportunity','foresight','showcase','roadmap'];
-    const links = Array.from(document.querySelectorAll('a.navlink'));
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute('id');
-          links.forEach(l => {
-            const active = l.getAttribute('href') === '#' + id;
-            l.classList.toggle('text-tqblue', active);
-            l.classList.toggle('font-semibold', active);
-            l.classList.toggle('border-b', active);
-            l.classList.toggle('border-tqblue', active);
-          });
-        }
-      })
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0.01 });
-    sections.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
+    menuBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('hidden') ? false : true;
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
   </script>
 </body>
 </html>
