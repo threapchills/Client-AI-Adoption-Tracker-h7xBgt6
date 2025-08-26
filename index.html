@@ -770,26 +770,29 @@
             <!-- Block 2: Kimberley Anne gallery (six thumbnails top, description below) -->
             <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
               <h5 class="text-white font-semibold mb-3">Kimberley Anne · Social ad gallery (concept thumbnails)</h5>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                <a href="assets/images/bloom.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+
+              <!-- Thumbnails: visible by default -->
+              <div id="kaThumbs" data-gallery="ka" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <a href="assets/images/bloom.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="0" aria-label="Open gallery: Bloom">
                   <img src="assets/images/bloom.png" alt="Bloom" class="w-full h-36 object-cover" />
                 </a>
-                <a href="assets/images/landmark.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                <a href="assets/images/landmark.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="1" aria-label="Open gallery: Landmark">
                   <img src="assets/images/landmark.png" alt="Landmark" class="w-full h-36 object-cover" />
                 </a>
-                <a href="assets/images/smallthingsmatter.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                <a href="assets/images/smallthingsmatter.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="2" aria-label="Open gallery: Small things matter">
                   <img src="assets/images/smallthingsmatter.png" alt="Small things matter" class="w-full h-36 object-cover" />
                 </a>
-                <a href="assets/images/warmthiswaiting.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                <a href="assets/images/warmthiswaiting.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="3" aria-label="Open gallery: Warmth is waiting">
                   <img src="assets/images/warmthiswaiting.png" alt="Warmth is waiting" class="w-full h-36 object-cover" />
                 </a>
-                <a href="assets/images/winterisserved.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                <a href="assets/images/winterisserved.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="4" aria-label="Open gallery: Winter is served">
                   <img src="assets/images/winterisserved.png" alt="Winter is served" class="w-full h-36 object-cover" />
                 </a>
-                <a href="assets/images/unlockindulgence.png" target="_blank" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                <a href="assets/images/unlockindulgence.png" class="ka-thumb block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60" data-index="5" aria-label="Open gallery: Unlock indulgence">
                   <img src="assets/images/unlockindulgence.png" alt="Unlock indulgence" class="w-full h-36 object-cover" />
                 </a>
               </div>
+
               <p class="text-sm text-ink-200 leading-relaxed mt-4">
                 Rapid ideation for social ads using AI image generation. Start with LLM prompts to explore angles, headlines and tonal directions, then generate base images (e.g., Midjourney / Imagen), and composite brand elements in Photoshop for on-brand outputs. This workflow accelerates testing — create several concepts in an afternoon, review with stakeholders, then promote the strongest into motion or print.
               </p>
@@ -842,7 +845,21 @@
     </div>
   </footer>
 
-  <!-- Small JS: year, mobile nav, active section highlight -->
+  <!-- Lightbox modal (hidden by default) -->
+  <div id="kaLightbox" class="fixed inset-0 z-[1000] hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="absolute inset-0 flex items-center justify-center p-4">
+      <div class="relative max-w-5xl w-full">
+        <img id="kaLbImg" src="" alt="" class="w-full max-h-[82vh] object-contain rounded-lg border border-white/10 shadow-soft" />
+        <!-- Controls -->
+        <button id="kaClose" class="absolute -top-3 -right-3 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center" aria-label="Close">✕</button>
+        <button id="kaPrev"  class="absolute top-1/2 -translate-y-1/2 -left-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Previous">‹</button>
+        <button id="kaNext"  class="absolute top-1/2 -translate-y-1/2 -right-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Next">›</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Small JS: year, mobile nav, active section highlight & gallery -->
   <script>
     // force start at top and avoid restoring scroll
     window.history.scrollRestoration = "manual";
@@ -886,17 +903,69 @@
       if (el) observer.observe(el);
     });
 
-    // --- Init simple A/B wipe for Google Drive iframes (visual only) ---
-    // (No longer used — block left as a safe no-op)
-    document.querySelectorAll('.ab-drive[data-wipe-init="true"]').forEach(block => {
-      const mask = block.querySelector('.ab-mask');
-      const slider = block.querySelector('.ab-wipe');
-      if (mask && slider) {
-        slider.addEventListener('input', (e) => {
-          mask.style.width = e.target.value + '%';
-        });
+    // --- Simple lightbox gallery for Kimberley Anne thumbnails ---
+    (function () {
+      const thumbsWrap = document.getElementById('kaThumbs');
+      if (!thumbsWrap) return;
+
+      const thumbs = Array.from(thumbsWrap.querySelectorAll('a.ka-thumb'));
+      const images = thumbs.map(a => a.getAttribute('href'));
+
+      const lb = document.getElementById('kaLightbox');
+      const lbImg = document.getElementById('kaLbImg');
+      const btnClose = document.getElementById('kaClose');
+      const btnPrev = document.getElementById('kaPrev');
+      const btnNext = document.getElementById('kaNext');
+      let idx = 0, startX = 0, endX = 0;
+
+      function open(i) {
+        idx = (i + images.length) % images.length;
+        lbImg.src = images[idx];
+        lb.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
       }
-    });
+      function close() {
+        lb.classList.add('hidden');
+        document.body.style.overflow = '';
+        lbImg.src = '';
+      }
+      function next() { open(idx + 1); }
+      function prev() { open(idx - 1); }
+
+      thumbs.forEach((a) => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          const i = parseInt(a.dataset.index || '0', 10);
+          open(i);
+        });
+      });
+
+      btnClose.addEventListener('click', close);
+      btnNext.addEventListener('click', next);
+      btnPrev.addEventListener('click', prev);
+
+      // Click backdrop to close
+      lb.addEventListener('click', (e) => {
+        if (e.target === lb) close();
+      });
+
+      // Keyboard controls
+      document.addEventListener('keydown', (e) => {
+        if (lb.classList.contains('hidden')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+
+      // Basic swipe for mobile
+      lbImg.addEventListener('touchstart', (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+      lbImg.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        if (Math.abs(endX - startX) > 40) {
+          if (endX < startX) next(); else prev();
+        }
+      }, { passive: true });
+    })();
   </script>
 </body>
 </html>
