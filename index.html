@@ -846,29 +846,26 @@
   </footer>
 
   <!-- Lightbox modal (fixed; hidden by default) -->
-  <div id="kaLightbox" class="fixed inset-0 z-[1000] hidden">
-    <!-- Backdrop -->
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm z-0"></div>
-  
+  <div id="kaLightbox" class="fixed inset-0 z-[9999] hidden items-center justify-center">
+    <!-- Backdrop (no blur to avoid stacking bugs) -->
+    <div id="kaBg" class="absolute inset-0 bg-black/85 z-10"></div>
+
     <!-- Content -->
-    <div class="absolute inset-0 flex items-center justify-center p-4 z-10">
-      <div class="relative max-w-5xl w-full">
-        <img id="kaLbImg" src="" alt="" 
-             class="w-full max-h-[82vh] object-contain rounded-lg border border-white/10 shadow-soft" />
-        <!-- Controls -->
-        <button id="kaClose"
-                class="absolute -top-3 -right-3 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center z-20"
-                aria-label="Close">✕</button>
-        <button id="kaPrev"
-                class="absolute top-1/2 -translate-y-1/2 -left-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center z-20"
-                aria-label="Previous">‹</button>
-        <button id="kaNext"
-                class="absolute top-1/2 -translate-y-1/2 -right-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center z-20"
-                aria-label="Next">›</button>
-      </div>
+    <div class="relative z-20 max-w-5xl w-[min(96vw,1200px)] px-4">
+      <img id="kaLbImg" src="" alt="" 
+           class="block w-full max-h-[85vh] object-contain rounded-lg border border-white/10 shadow-soft opacity-0 transition-opacity duration-200" />
+      <!-- Controls -->
+      <button id="kaClose"
+              class="absolute -top-4 -right-4 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center"
+              aria-label="Close">✕</button>
+      <button id="kaPrev"
+              class="absolute top-1/2 -translate-y-1/2 -left-5 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center"
+              aria-label="Previous">‹</button>
+      <button id="kaNext"
+              class="absolute top-1/2 -translate-y-1/2 -right-5 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center"
+              aria-label="Next">›</button>
     </div>
   </div>
-
 
   <!-- Small JS: year, mobile nav, active section highlight & gallery -->
   <script>
@@ -923,22 +920,34 @@
       const images = thumbs.map(a => a.getAttribute('href'));
 
       const lb = document.getElementById('kaLightbox');
+      const bg = document.getElementById('kaBg');
       const lbImg = document.getElementById('kaLbImg');
       const btnClose = document.getElementById('kaClose');
       const btnPrev = document.getElementById('kaPrev');
       const btnNext = document.getElementById('kaNext');
       let idx = 0, startX = 0, endX = 0;
 
+      function setImage(src) {
+        lbImg.style.opacity = '0';
+        const pre = new Image();
+        pre.onload = () => {
+          lbImg.src = src;
+          lbImg.style.opacity = '1';
+        };
+        pre.src = src;
+      }
+
       function open(i) {
         idx = (i + images.length) % images.length;
-        lbImg.src = images[idx];
         lb.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+        setImage(images[idx]);
       }
       function close() {
         lb.classList.add('hidden');
         document.body.style.overflow = '';
         lbImg.src = '';
+        lbImg.style.opacity = '0';
       }
       function next() { open(idx + 1); }
       function prev() { open(idx - 1); }
@@ -955,10 +964,8 @@
       btnNext.addEventListener('click', next);
       btnPrev.addEventListener('click', prev);
 
-      // Click backdrop to close
-      lb.addEventListener('click', (e) => {
-        if (e.target === lb) close();
-      });
+      // Click on backdrop only → close
+      bg.addEventListener('click', close);
 
       // Keyboard controls
       document.addEventListener('keydown', (e) => {
