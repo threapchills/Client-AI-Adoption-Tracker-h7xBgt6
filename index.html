@@ -498,109 +498,121 @@
           </div>
 
           <!-- ========================= -->
-          <!-- NEW: A/B scrub comparators -->
-          <!-- Placed directly below the per-pair findings, and ABOVE the cost comparison table -->
+          <!-- REPLACED: Scrub comparators -->
+          <!-- NEW: Premiere-baked A/B comparison reels (Google Drive previews) -->
           <div class="rounded-2xl border border-white/10 bg-coal/40 p-5">
-            <h4 class="text-white font-semibold mb-2">A/B visual scrub comparators (Google Drive previews)</h4>
-            <p class="text-ink-300 text-xs mb-4">Drag the slider to reveal AI (right) over the Original (left). Note: Google Drive previews are sandboxed; playback and audio cannot be centrally controlled. For best results, start both previews and mute one via its player UI.</p>
+            <h4 class="text-white font-semibold mb-2">Premiere-baked A/B comparison reels</h4>
+            <p class="text-ink-200 text-sm mb-3">
+              <strong>Note:</strong> Side by sides below — NB! Please also check these in full quality (downloadable in Full HD; very large files) individually as they showcase the AI-generated audio as well. 
+              The side-by-sides embedded here use the <em>original audio only</em>.
+            </p>
+            <p class="text-ink-300 text-xs mb-4">
+              <strong>Links:</strong>
+              Insurance: 
+              <a href="https://drive.google.com/file/d/1641ClaWvUQYOMYUv_V0TFCMtG48CJg8v/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>, 
+              Prestige: 
+              <a href="https://drive.google.com/file/d/1GIru95Sn4z3uywsartuSXCjv9cO3OK56/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>,
+              Complaints: 
+              <a href="https://drive.google.com/file/d/1MHyPTZtUEj1gEtA30qx_us7IbN5gSvZg/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>,
+              Credit Score: 
+              <a href="https://drive.google.com/file/d/1d4EnMekGfs31GaucvhdNJYBqQtTI0MIE/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>,
+              African Bank Tech Deals: 
+              <a href="https://drive.google.com/file/d/1gEQddCg7jUVBrAXtjOP3tjTluXkaVfLK/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>,
+              SB FC: 
+              <a href="https://drive.google.com/file/d/1m0wEg-gMgYZ_1jUGQRJdvpZQki_XaCMt/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>,
+              Penflex Rank TV:
+              <a href="https://drive.google.com/file/d/1xiQsQCBcBN0wXY5lvTHbd7PvNgapZb-q/view?usp=sharing" target="_blank" class="text-tqblue hover:underline">open</a>.
+            </p>
 
-            <div class="space-y-6">
-              <!-- Comparator template: Original (bottom) + AI (masked on top) -->
-              <!-- 1) Penflex Rank TV -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/13gEOh0zdMsO-3yNhVnA5TcUwIZmAHWOm/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1RJXhc265swLnPWQCQA5RzMsqI8aa-sLZ/preview" allow="autoplay"></iframe>
-                  </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <!-- 1) Penflex -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1xiQsQCBcBN0wXY5lvTHbd7PvNgapZb-q/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Penflex · Rank TV</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Penflex · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1xiQsQCBcBN0wXY5lvTHbd7PvNgapZb-q/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
 
-              <!-- 2) SB Credit Score -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/1OGE1VVJk8Ufi2yIihLJkzLj54fE3Z7VU/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1ynqfMQk0NILjgM74f8cBIKU9NgXexn6O/preview" allow="autoplay"></iframe>
-                  </div>
+              <!-- 2) Credit Score -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1d4EnMekGfs31GaucvhdNJYBqQtTI0MIE/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Standard Bank · Credit Score</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Credit Score · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1d4EnMekGfs31GaucvhdNJYBqQtTI0MIE/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
 
-              <!-- 3) SB Prestige -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/1xEJXLEtNiqgiGqp2m4DCJhfSHcrXvXEV/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1mgza5BlEfMDh5TXgFYeUf6konEbOPiNV/preview" allow="autoplay"></iframe>
-                  </div>
+              <!-- 3) Prestige -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1GIru95Sn4z3uywsartuSXCjv9cO3OK56/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Standard Bank · Prestige</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Prestige · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1GIru95Sn4z3uywsartuSXCjv9cO3OK56/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
 
               <!-- 4) African Bank Tech Deals -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/1GBJbLPn5agFxnu3Wx8t4rTs0Px8NitXB/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1Gk_okuLyTBu7VdjERMwc8bzgbuyTDRBt/preview" allow="autoplay"></iframe>
-                  </div>
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1gEQddCg7jUVBrAXtjOP3tjTluXkaVfLK/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">African Bank · Tech Deals</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
-                </div>
-              </div>
-
-              <!-- 5) SB Insurance Conversation -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/127Oa8FQOL8o1m_-LkWZIfztNxh3JwyBC/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1ZuLHB80M0cD43TTYiugQ597CcXBEp45c/preview" allow="autoplay"></iframe>
-                  </div>
-                </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Standard Bank · Insurance Conversation</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>African Bank · Tech Deals · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1gEQddCg7jUVBrAXtjOP3tjTluXkaVfLK/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
 
-              <!-- 6) SB Financial Services -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/1ZPTikman2EA328RlYLV8i0JCs3DCYvzZ/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1_cSBMh8i5QbZNJTY8ad5OpsepCeA8fra/preview" allow="autoplay"></iframe>
-                  </div>
+              <!-- 5) Insurance Conversation -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1641ClaWvUQYOMYUv_V0TFCMtG48CJg8v/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Standard Bank · Financial Services</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Insurance Conversation · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1641ClaWvUQYOMYUv_V0TFCMtG48CJg8v/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
 
-              <!-- 7) SB TV Complaints Process -->
-              <div class="ab-drive relative rounded-xl overflow-hidden border border-white/10 bg-black" data-wipe-init="true">
-                <div class="aspect-video">
-                  <iframe class="absolute inset-0 w-full h-full" src="https://drive.google.com/file/d/11-UVUNxGseoU1JrdwVGHk4bgILPVWK2p/preview" allow="autoplay"></iframe>
-                  <div class="ab-mask absolute inset-0 overflow-hidden" style="width:50%;">
-                    <iframe class="w-full h-full" src="https://drive.google.com/file/d/1etQfkhChLcbkbsYZ15R3CTV5irvKR5jq/preview" allow="autoplay"></iframe>
-                  </div>
+              <!-- 6) Financial Services -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1m0wEg-gMgYZ_1jUGQRJdvpZQki_XaCMt/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
                 </div>
-                <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur px-4 py-2 flex items-center gap-3">
-                  <span class="text-ink-200 text-xs">Standard Bank · TV Complaints Process</span>
-                  <input type="range" class="ab-wipe ml-auto w-40 sm:w-64 accent-[#f4901e]" min="0" max="100" value="50">
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Financial Services · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1m0wEg-gMgYZ_1jUGQRJdvpZQki_XaCMt/view?usp=sharing">Open full quality</a>
+                </div>
+              </div>
+
+              <!-- 7) Complaints Process -->
+              <div>
+                <div class="aspect-video rounded-xl overflow-hidden bg-ink-900/60 border border-white/10 iframe-wrap">
+                  <iframe src="https://drive.google.com/file/d/1MHyPTZtUEj1gEtA30qx_us7IbN5gSvZg/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+                <div class="mt-2 flex items-center justify-between text-xs text-ink-300">
+                  <span>Complaints Process · A/B composite (Premiere)</span>
+                  <a target="_blank" class="text-tqblue hover:underline"
+                    href="https://drive.google.com/file/d/1MHyPTZtUEj1gEtA30qx_us7IbN5gSvZg/view?usp=sharing">Open full quality</a>
                 </div>
               </div>
             </div>
@@ -875,7 +887,7 @@
     });
 
     // --- Init simple A/B wipe for Google Drive iframes (visual only) ---
-    // We cannot control playback/audio on Drive iframes; this only adjusts the top mask width.
+    // (No longer used — block removed; safe to keep as no-op)
     document.querySelectorAll('.ab-drive[data-wipe-init="true"]').forEach(block => {
       const mask = block.querySelector('.ab-mask');
       const slider = block.querySelector('.ab-wipe');
