@@ -63,6 +63,8 @@
 
     /* Native dialog backdrop for KA gallery */
     #kaDialog::backdrop { background: rgba(0,0,0,0.86); }
+    /* Native dialog backdrop for NEW brand gallery */
+    #brandDialog::backdrop { background: rgba(0,0,0,0.86); }
   </style>
 </head>
 
@@ -496,6 +498,7 @@
             <h4 class="text-white font-semibold mb-2">Premiere-baked A/B comparison reels</h4>
             <p class="text-ink-200 text-sm mb-3">
               <strong>Note:</strong> NB: The Premiere-baked A/B reels below are for quick visual comparison only — they play with the original audio. To experience the full AI versions (including AI-generated music/VO/SFX), please watch the individual original vs AI pairs above. You can also open each in Google Drive to download in Full HD (large files) for the cleanest playback.
+            </p>
             <p class="text-ink-300 text-xs mb-4">
               <strong>Links:</strong>
               Insurance: 
@@ -798,6 +801,39 @@
                 The Kimberley Anne Hotel has a beautiful, consistent brand identity that’s ideal for elevation with AI. The point isn’t to replicate what’s already possible — it’s to unlock visuals that would be impossible or prohibitively expensive with traditional photography, while staying true to the brand’s soul. Practically, the workflow remains familiar whether AI is used or not: brief, iterate, art direct, and finish — AI simply expands the creative surface area. Rapid ideation for social ads using AI image generation: start with LLM prompts to explore angles, headlines and tonal directions, then generate base images (e.g., Midjourney / Imagen), and composite brand elements in Photoshop for on-brand outputs. This accelerates testing — produce several concepts in an afternoon, review with stakeholders, then promote the strongest into motion or print.
               </p>
             </div>
+
+            <!-- ============================ -->
+            <!-- Block 3: NEW video + 4-image gallery -->
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <h5 class="text-white font-semibold mb-3">Brand Concepts · Motion & Stills</h5>
+
+              <!-- Video -->
+              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10 rounded-xl overflow-hidden mb-4">
+                <iframe src="https://drive.google.com/file/d/1UNtatbs-4WPYTdddzI6tpV2dEe5vPZAY/preview"
+                        allow="autoplay; encrypted-media" class="w-full h-full"></iframe>
+              </div>
+
+              <!-- Gallery Thumbs -->
+              <div id="brandThumbs" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <a href="assets/images/ideas.png" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                  <img src="assets/images/ideas.png" alt="Ideas" class="w-full h-32 object-cover" />
+                </a>
+                <a href="assets/images/orchestrating.png" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                  <img src="assets/images/orchestrating.png" alt="Orchestrating" class="w-full h-32 object-cover" />
+                </a>
+                <a href="assets/images/organicallygrown.png" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                  <img src="assets/images/organicallygrown.png" alt="Organically grown" class="w-full h-32 object-cover" />
+                </a>
+                <a href="assets/images/weaving.png" class="block rounded-lg overflow-hidden border border-white/10 bg-ink-900/60">
+                  <img src="assets/images/weaving.png" alt="Weaving" class="w-full h-32 object-cover" />
+                </a>
+              </div>
+
+              <p class="text-sm text-ink-200 leading-relaxed mt-4">
+                This sequence pairs a short motion piece with supporting stills to show how AI can rapidly explore connected visual metaphors — ideas, orchestration, organic growth and weaving narratives — all within a single brand voice. The workflow mirrors traditional creative development (brief → explore → refine → finish), but AI expands the option space and compresses iteration time, making it easier to progress from boards to test edits, and from stills to motion when a concept resonates.
+              </p>
+            </div>
+            <!-- ============================ -->
           </div>
         </div>
       </div>
@@ -846,13 +882,23 @@
     </div>
   </footer>
 
-  <!-- NEW: Native dialog lightbox for Kimberley Anne -->
+  <!-- Native dialog lightbox for Kimberley Anne -->
   <dialog id="kaDialog" class="rounded-lg border border-white/10 bg-black/80 p-0 w-[min(96vw,1200px)] z-[10000]">
     <div class="relative">
       <img id="kaDlgImg" src="" alt="" class="block w-full max-height-[85vh] max-h-[85vh] object-contain rounded-lg" />
       <button id="kaDlgClose" class="absolute top-2 right-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center" aria-label="Close">✕</button>
       <button id="kaDlgPrev" class="absolute top-1/2 -translate-y-1/2 left-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Previous">‹</button>
       <button id="kaDlgNext" class="absolute top-1/2 -translate-y-1/2 right-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Next">›</button>
+    </div>
+  </dialog>
+
+  <!-- NEW: Native dialog lightbox for Brand Concepts -->
+  <dialog id="brandDialog" class="rounded-lg border border-white/10 bg-black/80 p-0 w-[min(96vw,1200px)] z-[10000]">
+    <div class="relative">
+      <img id="brandDlgImg" src="" alt="" class="block w-full max-height-[85vh] max-h-[85vh] object-contain rounded-lg" />
+      <button id="brandDlgClose" class="absolute top-2 right-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-10 h-10 flex items-center justify-center" aria-label="Close">✕</button>
+      <button id="brandDlgPrev" class="absolute top-1/2 -translate-y-1/2 left-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Previous">‹</button>
+      <button id="brandDlgNext" class="absolute top-1/2 -translate-y-1/2 right-2 bg-white/10 hover:bg-white/20 text-white rounded-full w-12 h-12 flex items-center justify-center" aria-label="Next">›</button>
     </div>
   </dialog>
 
@@ -913,6 +959,50 @@
       const btnClose = document.getElementById('kaDlgClose');
       const btnPrev = document.getElementById('kaDlgPrev');
       const btnNext = document.getElementById('kaDlgNext');
+      let idx = 0;
+
+      function setImage(i) {
+        idx = (i + images.length) % images.length;
+        img.src = images[idx];
+      }
+      function open(i) {
+        setImage(i);
+        try { dlg.showModal(); } catch { dlg.setAttribute('open', ''); } // fallback for old browsers
+      }
+      function close() { dlg.close ? dlg.close() : dlg.removeAttribute('open'); }
+      function prev() { setImage(idx - 1); }
+      function next() { setImage(idx + 1); }
+
+      thumbs.forEach((a, i) => {
+        a.addEventListener('click', (e) => { e.preventDefault(); open(i); });
+      });
+
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', prev);
+      btnNext.addEventListener('click', next);
+
+      // Keyboard controls
+      document.addEventListener('keydown', (e) => {
+        if (!dlg.open) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowRight') next();
+        if (e.key === 'ArrowLeft') prev();
+      });
+    })();
+
+    // --- NEW: Native dialog gallery for Brand Concepts ---
+    (function () {
+      const wrap = document.getElementById('brandThumbs');
+      if (!wrap) return;
+
+      const thumbs = Array.from(wrap.querySelectorAll('a'));
+      const images = thumbs.map(a => a.getAttribute('href'));
+
+      const dlg = document.getElementById('brandDialog');
+      const img = document.getElementById('brandDlgImg');
+      const btnClose = document.getElementById('brandDlgClose');
+      const btnPrev = document.getElementById('brandDlgPrev');
+      const btnNext = document.getElementById('brandDlgNext');
       let idx = 0;
 
       function setImage(i) {
