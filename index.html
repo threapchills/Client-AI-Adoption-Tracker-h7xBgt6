@@ -42,11 +42,21 @@
   <style>
     /* Global: dark editorial backdrop */
     :root { --sepia: 0.08; }
-    body { filter: saturate(0.9); background: linear-gradient(180deg, #0e0e0e 0%, #1c1914 30%, #0e0e0e 100%); }
+    /* Mustard off-white with the TQ moodboard fixed behind it */
+    body {
+      filter: saturate(0.9);
+      /* Color wash + image (top layer first) */
+      background:
+        linear-gradient(0deg, rgba(243,233,218,0.94), rgba(239,228,181,0.94)),
+        url("assets/images/TQ-AI-Moodboard.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* nice parallax feel, optional */
+    }
     .paper {
       /* subtle texture; keeps your original vibe */
       background:
-        radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,0.06), rgba(255,255,255,0) 60%),
+        radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,0.06), rgba(130,183,199,0) 60%),
         radial-gradient(1000px 700px at 80% 10%, rgba(255,255,255,0.04), rgba(255,255,255,0) 70%);
     }
     .sepia { filter: sepia(var(--sepia)); }
