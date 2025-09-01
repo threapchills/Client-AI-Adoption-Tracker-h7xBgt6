@@ -75,10 +75,64 @@
     #kaDialog::backdrop { background: rgba(0,0,0,0.86); }
     /* Native dialog backdrop for NEW brand gallery */
     #brandDialog::backdrop { background: rgba(0,0,0,0.86); }
+
+    /* ===========================================
+   LIGHT MODE – TQ look & feel overrides only
+   (No content changed; purely presentation)
+   =========================================== */
+
+    /* Global surface: warm off-white with moodboard behind */
+    body {
+      color: #1c1914; /* ink-900 */
+      background:
+        linear-gradient(0deg, rgba(250,245,236,0.95), rgba(250,245,236,0.95)),
+        url("assets/images/TQ-AI-Moodboard.png");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    
+    /* Subtle paper lighting retained but shifted to light mode */
+    .paper {
+      background:
+        radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%),
+        radial-gradient(1000px 700px at 80% 10%, rgba(255,255,255,0.35), rgba(255,255,255,0) 70%);
+    }
+    
+    /* Header: white glass with soft border */
+    .bg-coal\/80 { background-color: rgba(255,255,255,0.88) !important; }
+    .border-white\/10, .border-white\/15 { border-color: rgba(0,0,0,0.08) !important; }
+    
+    /* Cards/panels: flip dark surfaces to white */
+    .bg-coal\/40 { background-color: #ffffff !important; }
+    
+    /* Video & image frames: very light grey to anchor media */
+    .bg-ink-900\/60 { background-color: #f7f4ee !important; } /* paper tone */
+    
+    /* Text: move all the “white” utility text to dark ink for contrast */
+    .text-white, .text-ink-100 { color: #1c1914 !important; }   /* headlines, labels */
+    .text-ink-200 { color: #3f3b34 !important; }                 /* body copy */
+    .text-ink-300 { color: #6b665a !important; }                 /* notes/subtext */
+    .text-ink-50  { color: #4b4841 !important; }
+    
+    /* Hero colour wash: TQ red warmed into a soft light background */
+    .hero-brand {
+      background: linear-gradient(135deg, #fff4ee 0%, #faf3e5 100%) !important;
+    }
+    
+    /* Links + accents: keep TQ blue for interactions on light background */
+    a.navlink:hover { color: #0887b5 !important; }
+    
+    /* Button edges (where old white borders were too faint on light bg) */
+    [class*="border-white/"] { border-color: rgba(0,0,0,0.08) !important; }
+    
+    /* Dialog backdrops stay dark for media lightboxes (readability) */
+    #kaDialog::backdrop, #brandDialog::backdrop { background: rgba(0,0,0,0.86); }
+
   </style>
 </head>
 
-<body class="text-ink-100 antialiased">
+<body class="text-ink-900 antialiased">
   <!-- Header / Nav -->
   <header class="fixed top-0 inset-x-0 z-50 bg-coal/80 backdrop-blur border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
