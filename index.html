@@ -75,64 +75,10 @@
     #kaDialog::backdrop { background: rgba(0,0,0,0.86); }
     /* Native dialog backdrop for NEW brand gallery */
     #brandDialog::backdrop { background: rgba(0,0,0,0.86); }
-
-    /* ===========================================
-   LIGHT MODE – TQ look & feel overrides only
-   (No content changed; purely presentation)
-   =========================================== */
-
-    /* Global surface: warm off-white with moodboard behind */
-    body {
-      color: #1c1914; /* ink-900 */
-      background:
-        linear-gradient(0deg, rgba(250,245,236,0.95), rgba(250,245,236,0.95)),
-        url("assets/images/TQ-AI-Moodboard.png");
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-    }
-    
-    /* Subtle paper lighting retained but shifted to light mode */
-    .paper {
-      background:
-        radial-gradient(1200px 800px at 20% 0%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%),
-        radial-gradient(1000px 700px at 80% 10%, rgba(255,255,255,0.35), rgba(255,255,255,0) 70%);
-    }
-    
-    /* Header: white glass with soft border */
-    .bg-coal\/80 { background-color: rgba(255,255,255,0.88) !important; }
-    .border-white\/10, .border-white\/15 { border-color: rgba(0,0,0,0.08) !important; }
-    
-    /* Cards/panels: flip dark surfaces to white */
-    .bg-coal\/40 { background-color: #ffffff !important; }
-    
-    /* Video & image frames: very light grey to anchor media */
-    .bg-ink-900\/60 { background-color: #f7f4ee !important; } /* paper tone */
-    
-    /* Text: move all the “white” utility text to dark ink for contrast */
-    .text-white, .text-ink-100 { color: #1c1914 !important; }   /* headlines, labels */
-    .text-ink-200 { color: #3f3b34 !important; }                 /* body copy */
-    .text-ink-300 { color: #6b665a !important; }                 /* notes/subtext */
-    .text-ink-50  { color: #4b4841 !important; }
-    
-    /* Hero colour wash: TQ red warmed into a soft light background */
-    .hero-brand {
-      background: linear-gradient(135deg, #fff4ee 0%, #faf3e5 100%) !important;
-    }
-    
-    /* Links + accents: keep TQ blue for interactions on light background */
-    a.navlink:hover { color: #0887b5 !important; }
-    
-    /* Button edges (where old white borders were too faint on light bg) */
-    [class*="border-white/"] { border-color: rgba(0,0,0,0.08) !important; }
-    
-    /* Dialog backdrops stay dark for media lightboxes (readability) */
-    #kaDialog::backdrop, #brandDialog::backdrop { background: rgba(0,0,0,0.86); }
-
   </style>
 </head>
 
-<body class="text-ink-900 antialiased">
+<body class="text-ink-100 antialiased">
   <!-- Header / Nav -->
   <header class="fixed top-0 inset-x-0 z-50 bg-coal/80 backdrop-blur border-b border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -204,7 +150,7 @@
             <!-- Replaced preview placeholder with hero image -->
             <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
               <div class="aspect-video rounded-xl overflow-hidden border border-white/10 bg-white flex items-center justify-center">
-                <img src="assets/images/TQ-AI-Moodboard.png" alt="Side-by-side comparison overview"
+                <img src="assets/images/AI-Moodboard.png" alt="Side-by-side comparison overview"
                      class="w-full h-full object-contain" />
               </div>
             </div>
@@ -783,6 +729,26 @@
                 </div>
               </div>
             </div>
+
+            <!-- ======================================= -->
+            <!-- NEW: Workflow showcase vids under Section B -->
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4 mt-6">
+              <h5 class="text-white font-semibold mb-3">
+                New Adobe Boards + Google DeepMind Suite Creative Workflow examples - Penflex social media ads.
+              </h5>
+              <div class="grid md:grid-cols-2 gap-4">
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10 rounded-xl overflow-hidden">
+                  <iframe src="https://drive.google.com/file/d/1x2aqG9qs5KctpB01URGWpoQq2eeL3al8/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+                <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10 rounded-xl overflow-hidden">
+                  <iframe src="https://drive.google.com/file/d/1Br7z-pNycj3yAbp16mHHnBS2MfGIdQO0/preview"
+                          allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+              </div>
+            </div>
+            <!-- ======================================= -->
+
           </div>
         </div>
       </div>
@@ -834,6 +800,16 @@
                 </div>
               </div>
             </div>
+
+            <!-- ===================== -->
+            <!-- NEW: Additional Penflex video (under the first Penflex block) -->
+            <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
+              <div class="iframe-wrap aspect-video bg-ink-900/60 border border-white/10 rounded-xl overflow-hidden">
+                <iframe src="https://drive.google.com/file/d/1GCW3m51Exo9zpz0cf1_DaOIdBrUHLgUb/preview"
+                        allow="autoplay; encrypted-media" allowfullscreen class="w-full h-full"></iframe>
+              </div>
+            </div>
+            <!-- ===================== -->
 
             <!-- Block 2: Kimberley Anne gallery (six thumbnails top, description below) -->
             <div class="rounded-2xl border border-white/10 bg-coal/40 p-4">
