@@ -109,11 +109,15 @@
     /* Video & image frames: very light grey to anchor media */
     .bg-ink-900\/60 { background-color: #f7f4ee !important; } /* paper tone */
     
-    /* Text: move all the “white” utility text to dark ink for contrast */
-    .text-white, .text-ink-100 { color: #1c1914 !important; }   /* headlines, labels */
-    .text-ink-200 { color: #3f3b34 !important; }                 /* body copy */
-    .text-ink-300 { color: #6b665a !important; }                 /* notes/subtext */
-    .text-ink-50  { color: #4b4841 !important; }
+    /* Text: move all the “white” and light-ink utility text to black for contrast */
+    [class*="text-white"],
+    [class*="text-ink-100"],
+    [class*="text-ink-50"] {
+      color: #000000 !important; /* Pure black */
+    }
+    
+    .text-ink-200 { color: #353129 !important; } /* Dark grey for body copy */
+    .text-ink-300 { color: #514a3c !important; } /* Medium grey for notes */
     
     /* Hero colour wash: TQ red warmed into a soft light background */
     .hero-brand {
