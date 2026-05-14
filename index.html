@@ -1476,16 +1476,19 @@
         }).join('');
       }
 
-      const CARD_FIELDS = [
-        { label: 'Reproduction scope', key: 'Reproduction scope', format: escapeHTML },
-        { label: 'Creative labour cost (R)', key: 'Creative labour cost (R)', format: formatRand },
-        { label: 'AI/compute spend (R)', key: 'AI/compute spend (R)', format: formatRand },
-        { label: 'Total reproduction spend (R)', key: 'Total reproduction spend (R)', format: formatRand },
-        { label: 'Tool stack', key: 'Tool stack', format: multilineHTML },
-        { label: 'Notes & recommendation', key: 'Notes & recommendation', format: multilineHTML },
-      ];
+      function renderCards({ headers, rows }) {
+        // Every column in the Reproduction sheet (other than Asset, which is
+        // used for matching) becomes a row on each card, in Sheet column order.
+        // Columns whose header contains "(R)" or "cost" are rendered as
+        // currency; everything else preserves newlines.
+        const fields = headers
+          .filter(h => h && h !== 'Asset')
+          .map(h => ({
+            label: h,
+            key: h,
+            format: isCostColumn(h) ? formatRand : multilineHTML
+          }));
 
-      function renderCards({ rows }) {
         rows.forEach(row => {
           const asset = row['Asset'];
           if (!asset) return;
@@ -1496,7 +1499,7 @@
           }
           const tbody = card.querySelector('table tbody');
           if (!tbody) return;
-          tbody.innerHTML = CARD_FIELDS.map(f => {
+          tbody.innerHTML = fields.map(f => {
             const raw = row[f.key] || '';
             return `<tr><td class="py-2 pr-4 align-top">${escapeHTML(f.label)}</td><td class="py-2">${f.format(raw)}</td></tr>`;
           }).join('');
